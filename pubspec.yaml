@@ -9,6 +9,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.1
   google_fonts: 2.3.1
+  speech_to_text: 5.4.3
+  flutter_tts: 3.3.3
   flutter: 
     sdk: flutter
 
