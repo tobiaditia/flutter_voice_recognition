@@ -15,23 +15,24 @@ class LoginController extends GetxController {
   RxInt init = 0.obs;
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     flutterTts.setLanguage('id');
     flutterTts.setSpeechRate(0.4);
+    await flutterTts.awaitSpeakCompletion(true);
     // _initSpeech();
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-    speak('Silahkan masukkan kode pin anda');
+    await speak('Silahkan masukkan kode pin anda');
     hearPin();
   }
 
-  void speak(String string) {
+  Future<void> speak(String string) async {
     isSpeak.value = true;
-    flutterTts.speak(string);
+    await flutterTts.speak(string);
     isSpeak.value = false;
   }
 
