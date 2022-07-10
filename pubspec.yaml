@@ -11,6 +11,8 @@ dependencies:
   google_fonts: 2.3.1
   speech_to_text: 5.4.3
   flutter_tts: 3.3.3
+  http: 0.13.4
+  shimmer: ^2.0.0
   flutter: 
     sdk: flutter
 

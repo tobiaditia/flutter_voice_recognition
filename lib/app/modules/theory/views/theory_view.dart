@@ -1,3 +1,4 @@
+import 'package:e_learning_tunanetra_speech_recognition2/app/data/widgets/shimmer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -7,17 +8,46 @@ import '../controllers/theory_controller.dart';
 class TheoryView extends GetView<TheoryController> {
   @override
   Widget build(BuildContext context) {
+    int init = controller.count.value;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('TheoryView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'TheoryView is working',
-          style: TextStyle(fontSize: 20),
+        appBar: AppBar(
+          title: const Text('Materi'),
+          centerTitle: true,
         ),
-      ),
-    );
+        body: SingleChildScrollView(
+          child: GetBuilder<TheoryController>(builder: (e) {
+            return Column(
+              children: [
+                Obx(() => controller.isLoading.isTrue
+                    ? builderShimmer(26)
+                    : SizedBox(
+                        height: Get.height - (200),
+                        child: ListView(
+                            children: e.theories
+                                .map(
+                                  (theory) => Container(
+                                    margin:
+                                        const EdgeInsets.symmetric(vertical: 6),
+                                    padding: const EdgeInsets.all(12),
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromARGB(255, 199, 199, 199),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Text(
+                                      theory.name,
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                )
+                                .toList()),
+                      )),
+                const SizedBox(
+                  height: 24,
+                ),
+                // Text(e.surah!.ayat[0].ar)
+              ],
+            );
+          }),
+        ));
   }
 }

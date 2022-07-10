@@ -1,6 +1,5 @@
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:get/get.dart';
-import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
 
 class LoginController extends GetxController {
@@ -34,14 +33,6 @@ class LoginController extends GetxController {
     isSpeak.value = true;
     await flutterTts.speak(string);
     isSpeak.value = false;
-  }
-
-  void _initSpeech() async {
-    _speechEnabled.value = await speechToText.initialize();
-  }
-
-  void _onSpeechResult(SpeechRecognitionResult result) {
-    _lastWords.value = result.recognizedWords;
   }
 
   void hearPin() async {
