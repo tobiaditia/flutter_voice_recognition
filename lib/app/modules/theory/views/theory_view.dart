@@ -1,4 +1,5 @@
 import 'package:e_learning_tunanetra_speech_recognition2/app/data/widgets/shimmer.dart';
+import 'package:e_learning_tunanetra_speech_recognition2/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -20,22 +21,31 @@ class TheoryView extends GetView<TheoryController> {
               children: [
                 Obx(() => controller.isLoading.isTrue
                     ? builderShimmer(26)
-                    : SizedBox(
+                    : Container(
+                      margin: const EdgeInsets.all(24),
                         height: Get.height - (200),
                         child: ListView(
                             children: e.theories
                                 .map(
-                                  (theory) => Container(
-                                    margin:
-                                        const EdgeInsets.symmetric(vertical: 6),
-                                    padding: const EdgeInsets.all(12),
-                                    decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 199, 199, 199),
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Text(
-                                      theory.name,
-                                      textAlign: TextAlign.center,
+                                  (theory) => GestureDetector(
+                                    onTap: () => Get.toNamed(
+                                        Routes.THEORY_DETAIL,
+                                        arguments: {
+                                          "id": theory.id,
+                                        }),
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          vertical: 6),
+                                      padding: const EdgeInsets.all(12),
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              255, 199, 199, 199),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Text(
+                                        theory.name,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                   ),
                                 )
